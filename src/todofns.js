@@ -41,7 +41,7 @@ const project = (title) => {
 
 let myProjects = [];
 
-const PushProject = (projectItem) => {
+const pushProject = (projectItem) => {
     myProjects.push(projectItem);
 }
 
@@ -53,3 +53,5 @@ const deleteProject = (projectItem) => {
 const projectToDos = (projectItem, toDoItem) => {
     projectItem.push(toDoItem);
 }
+
+export {toDo, mytoDos, PushtoDo, titleUpdate, descriptionUpdate, dueDateUpdate, priorityUpdate, deleteToDo, project, myProjects, pushProject, deleteProject, projectToDos}
