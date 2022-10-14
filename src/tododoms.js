@@ -302,7 +302,7 @@ const toDoTile = (tileid, todoname, tododescrip, tododate, todoprio) => {
         descexpand.style.height = 'fit-content';
         }
 
-        else if (descexpand.childNodes.length !== 'hidden') {
+        else if (descexpand.style.visibility !== 'hidden') {
             descexpand.style.visibility = 'hidden';
             descexpand.style.width = '0px';
             descexpand.style.height = '0px';
@@ -388,6 +388,14 @@ const projectTile = (projectname) => {
     storeprojects(projtile.id);
 
     projtile.addEventListener('click', (e) => {
+        let descs = document.getElementsByClassName('descexpand');
+        if (descs.length !== null) {
+            for (const desc of descs) {
+                desc.style.visibility = 'hidden';
+                desc.style.width = '0px';
+                desc.style.height = '0px;'
+            }
+        } 
         clearforms();
         sorttodos();
         let pagecontainer = document.getElementById('pagecontainer');

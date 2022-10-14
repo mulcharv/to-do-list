@@ -83,6 +83,14 @@ const component = () => {
 
 
     home.addEventListener('click', (e) => {
+        let descs = document.getElementsByClassName('descexpand');
+        if (descs.length !== null) {
+            for (const desc of descs) {
+                desc.style.visibility = 'hidden';
+                desc.style.width = '0px';
+                desc.style.height = '0px;'
+            }
+        }
         homecounter += 1;
 
         if (homecounter == 1) {
@@ -120,6 +128,14 @@ const component = () => {
     today.appendChild(todayPic);
 
     today.addEventListener('click', (e) => {
+        let descs = document.getElementsByClassName('descexpand');
+        if (descs.length !== null) {
+            for (const desc of descs) {
+                desc.style.visibility = 'hidden';
+                desc.style.width = '0px';
+                desc.style.height = '0px;'
+            }
+        }
         todaycounter += 1;
 
         if (todaycounter == 1) {
@@ -157,6 +173,14 @@ const component = () => {
     thisWeek.appendChild(thisWeekPic);
 
     thisWeek.addEventListener('click', (e) => {
+        let descs = document.getElementsByClassName('descexpand');
+        if (descs.length !== null) {
+            for (const desc of descs) {
+                desc.style.visibility = 'hidden';
+                desc.style.width = '0px';
+                desc.style.height = '0px;'
+            }
+        }
 
         weekcounter += 1;
 
@@ -229,11 +253,26 @@ const component = () => {
     window.addEventListener('load', (e) => {
         loadprojects();
         loadprojpages();
-        if (projTileList.childNodes.length > 0) {   
+        if (projTileList.childNodes.length > 0) {  
+            let descs = document.getElementsByClassName('descexpand');
+        if (descs.length !== null) {
+            for (const desc of descs) {
+                desc.style.visibility = 'hidden';
+                desc.style.width = '0px';
+                desc.style.height = '0px;'
+            }
+        } 
         let tiles = document.getElementsByClassName('projecttile');
         console.log(tiles.length);
         for (const tile of tiles) {
             tile.addEventListener('click', (e) => {
+                if (descs.length !== null) {
+                    for (const desc of descs) {
+                        desc.style.visibility = 'hidden';
+                        desc.style.width = '0px';
+                        desc.style.height = '0px;'
+                    }
+                } 
                 sorttodos();
                 clearforms();
                 let pagecontainer = document.getElementById('pagecontainer');
@@ -376,6 +415,24 @@ const component = () => {
                 }
             })
         }
+
+        let descbuttons = document.getElementsByClassName('tiledescbutton');
+        for (const btn of descbuttons) {
+        btn.addEventListener('click', (e) => {
+            let parentdesc = e.target.parentElement.parentElement.parentElement;
+            let descexpand = parentdesc.lastChild;
+            if (descexpand.style.visibility == 'hidden') {
+            descexpand.style.visibility = 'visible';
+            descexpand.style.width = parentdesc.style.width;
+            descexpand.style.height = 'fit-content';
+            }
+            else if (descexpand.style.visibility !== 'hidden') {
+                descexpand.style.visibility = 'hidden';
+                descexpand.style.width = '0px';
+                descexpand.style.height = '0px';
+            }
+        })
+    }
 
         }
     })
