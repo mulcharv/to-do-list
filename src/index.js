@@ -7,7 +7,7 @@ import addpic from './plus-circle-outline.svg';
 import themepic from './theme-light-dark.svg';
 import './style.css';
 
-import {projectForms, toDoForms, toDoTile, projectTile, periodpage, sorttiles, sorttodos, loadprojects, loadprojpages, clearforms} from './tododoms.js';
+import {projectForms, toDoForms, toDoTile, projectTile, periodpage, sorttiles, sorttodos, loadprojects, loadprojpages, clearforms, updtprojdel} from './tododoms.js';
 import {toDo, mytoDos, PushtoDo, titleUpdate, descriptionUpdate, dueDateUpdate, priorityUpdate, deleteToDo, project, myProjects, pushProject, deleteProject, projectToDos} from './todofns.js';
 import {createprojtile} from './todointerfacers.js';
 
@@ -402,19 +402,7 @@ const component = () => {
             })
         }
 
-        let deletebuttons = document.getElementsByClassName('deletebutton');
-        for (const del of deletebuttons) {
-            del.addEventListener('click', (e) => {
-                if (e.target.className == 'deletebuttonpic') {
-                    let todotile = e.target.parentElement.parentElement.parentElement;
-                    todotile.remove();
-                }
-                if (e.target.className == 'deletebutton') {
-                    let todotile = e.target.parentElement.parentElement;
-                    todotile.remove();
-                }
-            })
-        }
+        updtprojdel();
 
         let descbuttons = document.getElementsByClassName('tiledescbutton');
         for (const btn of descbuttons) {

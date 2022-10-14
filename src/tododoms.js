@@ -33,6 +33,7 @@ const storeprojpages = (item) => {
     localStorage.setItem('projectpages', JSON.stringify(projpagesarray));
 }
 
+
 const loadprojpages = () => {
     const ppparunpacked = JSON.parse(localStorage.getItem('projectpages') || '[]');
     let pagecontainer = document.getElementById('pagecontainer');
@@ -52,6 +53,32 @@ const clearforms = () => {
             form.remove();
         }
     }
+}
+
+const updtprojdel = () => {
+    let deletebuttons = document.getElementsByClassName('deletebutton');
+        for (const del of deletebuttons) {
+            del.addEventListener('click', (e) => {
+                if (e.target.className == 'deletebuttonpic') {
+                    let todotile = e.target.parentElement.parentElement.parentElement;
+                    let page = todotile.parentElement.parentElement;
+                    let pageid = page.id;
+                    todotile.remove();
+                    let pagenum = pageid.replace(/\D/g, "");
+                    projpagesarray[pagenum] = page.outerHTML;
+                    localStorage.setItem('projectpages', JSON.stringify(projpagesarray));
+                }
+                if (e.target.className == 'deletebutton') {
+                    let todotile = e.target.parentElement.parentElement;
+                    let page = todotile.parentElement.parentElement;
+                    let pageid = page.id;
+                    todotile.remove();
+                    let pagenum = pageid.replace(/\D/g, "");
+                    projpagesarray[pagenum] = page.outerHTML;
+                    localStorage.setItem('projectpages', JSON.stringify(projpagesarray));
+                }
+            })
+        }
 }
 
 const toDoForms = (todoformtype, todoname, tododescrip, tododate, todoprio, todotileid) => {
@@ -362,7 +389,13 @@ const toDoTile = (tileid, todoname, tododescrip, tododate, todoprio) => {
     firstrow.appendChild(deletebutton);
 
     deletebutton.addEventListener('click', (e) => {
-        todotilecontainer.remove()
+        let page = todotilecontainer.parentElement.parentElement;
+        let pageid = page.id;
+        let pagenum = pageid.replace(/\D/g, "");
+        todotilecontainer.remove();
+        projpagesarray[pagenum] = page.outerHTML;
+            localStorage.setItem('projectpages', JSON.stringify(projpagesarray));
+
     })
 
     let descexpand = document.createElement('div');
@@ -803,5 +836,5 @@ const sorttiles = (period) => {
 }
 
 
-export {projectForms, toDoForms, toDoTile, projectTile, periodpage, sorttiles, sorttodos, loadprojects, loadprojpages, clearforms};
+export {projectForms, toDoForms, toDoTile, projectTile, periodpage, sorttiles, sorttodos, loadprojects, loadprojpages, clearforms, updtprojdel};
 
