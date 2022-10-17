@@ -81,6 +81,7 @@ const updtprojdel = () => {
         }
 }
 
+
 const toDoForms = (todoformtype, todoname, tododescrip, tododate, todoprio, todotileid) => {
     let todoformcontainer = document.createElement('div');
     todoformcontainer.setAttribute('id', 'todoformcontainer');
@@ -486,6 +487,11 @@ const deleteprojtile = () => {
             let projtile = document.getElementById(`project${pageidnum}`);
             page.remove();
             projtile.remove();
+            projarray.splice(pageidnum, 1);
+            projpagesarray.splice(pageidnum, 1);
+            localStorage.setItem('projects', JSON.stringify(projarray));
+            localStorage.setItem('projectpages', JSON.stringify(projpagesarray));
+
         }
     }
 }
